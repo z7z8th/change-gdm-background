@@ -1,52 +1,66 @@
 # change-gdm-background
 
 This script automates the process of setting an image or color in GNOME Display Manager 3 background
-which comes by default with Ubuntu or Pop OS versions 20.04 Focal Fossa, 20.10 Groovy Gorilla and
-21.04 Hirsute Hippo.
+which comes by default with Debian, Ubuntu or Pop OS.
 
 ## Warning
 
-This script wont work with any older version of Ubuntu or Pop OS because they have a different
+This script wont work with any older version of Debian, Ubuntu or Pop OS because they have a different
 way of dealing with gdm settings.
 
 It also won't work if your system is set to a custom gdm3 theme. You will have to reset to the
 default configuration of gdm3 before using the script.
 
-This tool was made specifically to work with Ubuntu or Pop OS 20.04, 20.10 and 21.04 as it now
+This tool was made specifically to work with Debian, Ubuntu or Pop OS 20.04, 20.10 and 21.04 as it now
 bundles all configuration files inside a .gresource file.
 
 If you are going to set an image file that has spaces in its file name or folders, remember to
-scape them with backslashes.
-
-## GUI version
-
-I HAVE DISABLED THE GUI APP REPO BECASE IT WAS CAUSING THE NEW UBUNTU 21.10 TO CRASH.
-SORRY FOR ANY INCOVENIENCE.
+escape them with backslashes.
 
 ## Installation
 
 First, you will need to install libglib2.0-dev-bin with `sudo apt install libglib2.0-dev-bin`
 Then, you can download the script with the command below:
+
+```sh
+wget github.com/z7z8th/change-gdm-background/raw/master/change-gdm-background
 ```
-wget github.com/thiggy01/change-gdm-background/raw/master/change-gdm-background
-```
+
 And set it as an executable with `chmod +x change-gdm-background`
 
 ## Usage
 
-Run the script with root privileges such as `sudo ./change-gdm-background /path/to/image`.
+```sh
+$ sudo ~/src/garbage/debian-sys/usr/bin/change-gdm-background
 
-If you see a message `login image sucessfully changed`, then, when you restart gdm or reboot your
-computer, your gdm background should be covered with the image you selected.
+Image file not found or wrong color hex code.
+Please, submit a .jpg/.png/.svg image file or a valid hex code.
 
-You can restore your original gdm theme any time with `sudo ./change-gdm-background
---restore`.
+Usage:
+  sudo ./change-gdm-background [-i /path/to/image.*g] [-d /path/to/wallpaper/dir] [-c color_hex_code] [-r] [-b] [-R]
+    -i path              Path of background image
+    -c hex_color_code    Hex color code
+    -r                   Restore original theme
+    -b                   Set to latest bing wallpaper automatically, /home/xxx/Pictures/BingWallpaper/*
+                         Should be used with gnome-shell bing wallpaper extension:
+                         https://github.com/neffo/bing-wallpaper-gnome-extension
+    -d dir               Set to newest wallpaper in folder
+    -R                   Randomly select wallpaper
 
-### Change Color
+Typical usage:
+# randomly select a bing wallpaper
+sudo ./change-gdm-background -bR
 
-Now you can change that annoying purple color to any color you like. Just type `sudo
-./change-gdm-background \#yourhexcode` and voilá, you changed it. Your color hex format should
-be of six characters like \\#407294 or three characters like \\#6ac.
+# randomly select a wallpaper in folder
+sudo ./change-gdm-background -d /home/xxx/Pictures -R
+
+# set to pure color
+sudo ./change-gdm-background -c 6f876d
+
+# restore original theme
+sudo ./change-gdm-background -r
+
+```
 
 ### Multi-screen support
 
